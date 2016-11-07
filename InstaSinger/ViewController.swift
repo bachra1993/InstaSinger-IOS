@@ -27,6 +27,9 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreafted.
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+    
+    }
 
 }
 
