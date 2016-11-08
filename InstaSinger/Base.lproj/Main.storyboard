@@ -31,7 +31,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="545"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GuU-D4-5bO" id="9zV-Ns-qlL">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="544.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="544"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view tag="200" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k8v-EW-UYk">
@@ -280,15 +280,25 @@
                                     <action selector="SignIn:" destination="0L2-0P-XTr" eventType="touchUpInside" id="sxk-dS-VKF"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jlA-hy-3s4">
+                                <rect key="frame" x="-0.5" y="397" width="375" height="30"/>
+                                <state key="normal" title="logIn"/>
+                                <connections>
+                                    <action selector="LogIn:" destination="0L2-0P-XTr" eventType="touchUpInside" id="Kw0-Mk-Zwu"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="jlA-hy-3s4" firstAttribute="centerX" secondItem="7mB-pQ-EIs" secondAttribute="centerX" id="1h4-dn-YAJ"/>
                             <constraint firstItem="f3P-YY-h1M" firstAttribute="centerX" secondItem="7mB-pQ-EIs" secondAttribute="centerX" id="5mh-jG-woy"/>
                             <constraint firstItem="W0f-5m-Zg8" firstAttribute="top" secondItem="Mv3-Ni-6FR" secondAttribute="bottom" constant="140" id="5zE-Nr-nHg"/>
                             <constraint firstItem="W0f-5m-Zg8" firstAttribute="width" secondItem="7mB-pQ-EIs" secondAttribute="width" id="7B7-hI-n1u"/>
                             <constraint firstItem="ChK-hq-RPQ" firstAttribute="centerX" secondItem="7mB-pQ-EIs" secondAttribute="centerX" id="7Ta-Qz-ViD"/>
                             <constraint firstItem="f3P-YY-h1M" firstAttribute="width" secondItem="7mB-pQ-EIs" secondAttribute="width" id="HC7-aM-5ht"/>
                             <constraint firstItem="W0f-5m-Zg8" firstAttribute="centerX" secondItem="7mB-pQ-EIs" secondAttribute="centerX" id="PZ5-nl-rid"/>
+                            <constraint firstItem="jlA-hy-3s4" firstAttribute="top" secondItem="Mv3-Ni-6FR" secondAttribute="bottom" constant="377" id="UEV-9X-vPQ"/>
+                            <constraint firstItem="jlA-hy-3s4" firstAttribute="width" secondItem="7mB-pQ-EIs" secondAttribute="width" id="UjS-2d-seb"/>
                             <constraint firstItem="ChK-hq-RPQ" firstAttribute="width" secondItem="7mB-pQ-EIs" secondAttribute="width" id="ZA2-oy-xnz"/>
                             <constraint firstItem="f3P-YY-h1M" firstAttribute="top" secondItem="Mv3-Ni-6FR" secondAttribute="bottom" constant="214" id="v07-Zp-yup"/>
                             <constraint firstItem="ChK-hq-RPQ" firstAttribute="top" secondItem="Mv3-Ni-6FR" secondAttribute="bottom" constant="319" id="za3-kZ-4A6"/>

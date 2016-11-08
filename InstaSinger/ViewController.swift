@@ -70,6 +70,36 @@ class ViewController: UIViewController {
     }
     
     
+    
+    
+    @IBAction func LogIn(_ sender: Any) {
+        
+        FIRAuth.auth()?.signIn(withEmail: text1.text!, password: text2.text!) { (user, error) in
+            // ...
+            if let user = user{
+                print(user.email)
+                
+                print("User Loged")
+                print(user)
+                print(error?.localizedDescription)
+            }
+            else{
+                print("user not Loged")
+                print(user)
+                print(error?.localizedDescription)
+            }
+        }
+
+        }
+        
+  
+    
+    
+    
+    
+    
+    
+    
    }
 
 
