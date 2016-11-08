@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="SZ2-HP-NYo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="0L2-0P-XTr">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -31,7 +31,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="545"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GuU-D4-5bO" id="9zV-Ns-qlL">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="544"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="544.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view tag="200" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k8v-EW-UYk">
@@ -260,8 +260,44 @@
                     <view key="view" contentMode="scaleToFill" id="7mB-pQ-EIs">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="W0f-5m-Zg8">
+                                <rect key="frame" x="110" y="160" width="97" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="f3P-YY-h1M">
+                                <rect key="frame" x="118" y="234" width="97" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ChK-hq-RPQ">
+                                <rect key="frame" x="161" y="339" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="SignIn:" destination="0L2-0P-XTr" eventType="touchUpInside" id="sxk-dS-VKF"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="f3P-YY-h1M" firstAttribute="centerX" secondItem="7mB-pQ-EIs" secondAttribute="centerX" id="5mh-jG-woy"/>
+                            <constraint firstItem="W0f-5m-Zg8" firstAttribute="top" secondItem="Mv3-Ni-6FR" secondAttribute="bottom" constant="140" id="5zE-Nr-nHg"/>
+                            <constraint firstItem="W0f-5m-Zg8" firstAttribute="width" secondItem="7mB-pQ-EIs" secondAttribute="width" id="7B7-hI-n1u"/>
+                            <constraint firstItem="ChK-hq-RPQ" firstAttribute="centerX" secondItem="7mB-pQ-EIs" secondAttribute="centerX" id="7Ta-Qz-ViD"/>
+                            <constraint firstItem="f3P-YY-h1M" firstAttribute="width" secondItem="7mB-pQ-EIs" secondAttribute="width" id="HC7-aM-5ht"/>
+                            <constraint firstItem="W0f-5m-Zg8" firstAttribute="centerX" secondItem="7mB-pQ-EIs" secondAttribute="centerX" id="PZ5-nl-rid"/>
+                            <constraint firstItem="ChK-hq-RPQ" firstAttribute="width" secondItem="7mB-pQ-EIs" secondAttribute="width" id="ZA2-oy-xnz"/>
+                            <constraint firstItem="f3P-YY-h1M" firstAttribute="top" secondItem="Mv3-Ni-6FR" secondAttribute="bottom" constant="214" id="v07-Zp-yup"/>
+                            <constraint firstItem="ChK-hq-RPQ" firstAttribute="top" secondItem="Mv3-Ni-6FR" secondAttribute="bottom" constant="319" id="za3-kZ-4A6"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="text1" destination="W0f-5m-Zg8" id="sCq-g0-g8s"/>
+                        <outlet property="text2" destination="f3P-YY-h1M" id="TUy-KB-OaC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ye9-6P-atF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

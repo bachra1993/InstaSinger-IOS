@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		07DA550E70F0403D33FA8654 /* Pods_InstaSinger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2836B8D405F31DDC8B464E6F /* Pods_InstaSinger.framework */; };
 		282487EA1DCFCDE1001E3847 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282487E91DCFCDE1001E3847 /* HomeViewController.swift */; };
 		286292641DCF50860049D3A8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286292631DCF50860049D3A8 /* AppDelegate.swift */; };
 		286292661DCF50860049D3A8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286292651DCF50860049D3A8 /* ViewController.swift */; };
@@ -17,11 +18,12 @@
 		286292791DCF513D0049D3A8 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286292781DCF513D0049D3A8 /* CameraViewController.swift */; };
 		2862927B1DCF51EE0049D3A8 /* DraggableThumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2862927A1DCF51EE0049D3A8 /* DraggableThumbnail.swift */; };
 		2862927D1DCF6A220049D3A8 /* Thumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2862927C1DCF6A220049D3A8 /* Thumbnail.swift */; };
-		2862927F1DCF9D330049D3A8 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2862927E1DCF9D330049D3A8 /* Configuration.swift */; };
+		28F163701DD2329700DE9BEA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 28F1636F1DD2329700DE9BEA /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		282487E91DCFCDE1001E3847 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		2836B8D405F31DDC8B464E6F /* Pods_InstaSinger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstaSinger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		286292601DCF50860049D3A8 /* InstaSinger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstaSinger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		286292631DCF50860049D3A8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		286292651DCF50860049D3A8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -33,7 +35,9 @@
 		286292781DCF513D0049D3A8 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		2862927A1DCF51EE0049D3A8 /* DraggableThumbnail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DraggableThumbnail.swift; sourceTree = "<group>"; };
 		2862927C1DCF6A220049D3A8 /* Thumbnail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Thumbnail.swift; sourceTree = "<group>"; };
-		2862927E1DCF9D330049D3A8 /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		28F1636F1DD2329700DE9BEA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9C42A8521F4320401922C4FE /* Pods-InstaSinger.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstaSinger.release.xcconfig"; path = "Pods/Target Support Files/Pods-InstaSinger/Pods-InstaSinger.release.xcconfig"; sourceTree = "<group>"; };
+		B05808F6D4ACFC61B1AD10FD /* Pods-InstaSinger.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstaSinger.debug.xcconfig"; path = "Pods/Target Support Files/Pods-InstaSinger/Pods-InstaSinger.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +45,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07DA550E70F0403D33FA8654 /* Pods_InstaSinger.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -52,6 +57,8 @@
 			children = (
 				286292621DCF50860049D3A8 /* InstaSinger */,
 				286292611DCF50860049D3A8 /* Products */,
+				E78F0AC3967EBC3474570A04 /* Pods */,
+				6053884FFA64BC6CBAAACF11 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -75,11 +82,28 @@
 				2862926A1DCF50860049D3A8 /* InstaSinger.xcdatamodeld */,
 				286292781DCF513D0049D3A8 /* CameraViewController.swift */,
 				2862927A1DCF51EE0049D3A8 /* DraggableThumbnail.swift */,
+				28F1636F1DD2329700DE9BEA /* GoogleService-Info.plist */,
 				2862927C1DCF6A220049D3A8 /* Thumbnail.swift */,
-				2862927E1DCF9D330049D3A8 /* Configuration.swift */,
 				282487E91DCFCDE1001E3847 /* HomeViewController.swift */,
 			);
 			path = InstaSinger;
+			sourceTree = "<group>";
+		};
+		6053884FFA64BC6CBAAACF11 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2836B8D405F31DDC8B464E6F /* Pods_InstaSinger.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E78F0AC3967EBC3474570A04 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B05808F6D4ACFC61B1AD10FD /* Pods-InstaSinger.debug.xcconfig */,
+				9C42A8521F4320401922C4FE /* Pods-InstaSinger.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -89,9 +113,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 286292751DCF50860049D3A8 /* Build configuration list for PBXNativeTarget "InstaSinger" */;
 			buildPhases = (
+				21B6C1D6C90A55928338A577 /* [CP] Check Pods Manifest.lock */,
 				2862925C1DCF50860049D3A8 /* Sources */,
 				2862925D1DCF50860049D3A8 /* Frameworks */,
 				2862925E1DCF50860049D3A8 /* Resources */,
+				6939327060984B9ED2AD59F7 /* [CP] Embed Pods Frameworks */,
+				ED3AEDA9F2C37131902FA567 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -143,12 +170,61 @@
 			buildActionMask = 2147483647;
 			files = (
 				286292711DCF50860049D3A8 /* LaunchScreen.storyboard in Resources */,
+				28F163701DD2329700DE9BEA /* GoogleService-Info.plist in Resources */,
 				2862926E1DCF50860049D3A8 /* Assets.xcassets in Resources */,
 				286292691DCF50860049D3A8 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		21B6C1D6C90A55928338A577 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		6939327060984B9ED2AD59F7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-InstaSinger/Pods-InstaSinger-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ED3AEDA9F2C37131902FA567 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-InstaSinger/Pods-InstaSinger-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2862925C1DCF50860049D3A8 /* Sources */ = {
@@ -157,7 +233,6 @@
 			files = (
 				286292661DCF50860049D3A8 /* ViewController.swift in Sources */,
 				2862927B1DCF51EE0049D3A8 /* DraggableThumbnail.swift in Sources */,
-				2862927F1DCF9D330049D3A8 /* Configuration.swift in Sources */,
 				282487EA1DCFCDE1001E3847 /* HomeViewController.swift in Sources */,
 				2862927D1DCF6A220049D3A8 /* Thumbnail.swift in Sources */,
 				286292791DCF513D0049D3A8 /* CameraViewController.swift in Sources */,
@@ -281,6 +356,7 @@
 		};
 		286292761DCF50860049D3A8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B05808F6D4ACFC61B1AD10FD /* Pods-InstaSinger.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = K67N7CU2TX;
@@ -294,6 +370,7 @@
 		};
 		286292771DCF50860049D3A8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9C42A8521F4320401922C4FE /* Pods-InstaSinger.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = K67N7CU2TX;

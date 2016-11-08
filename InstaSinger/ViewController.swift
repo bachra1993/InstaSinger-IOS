@@ -7,15 +7,19 @@
 //
 
 import UIKit
+import Alamofire
+import Firebase
 
 class ViewController: UIViewController {
     
     
-    var Con : Configuration!
+
     var NS : NSURL!
     
 
     override func viewDidLoad() {
+       // test()
+        
         super.viewDidLoad()
         
         
@@ -28,8 +32,55 @@ class ViewController: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-    
+        
     }
+   
+    
+    
+    
+    @IBOutlet weak var imageView: UIImageView!
+    
+    
+    @IBOutlet weak var text1: UITextField!
+    
+    
+    @IBOutlet weak var text2: UITextField!
+    
+    
+    @IBAction func SignIn(_ sender: Any) {
+        
+        
+        FIRAuth.auth()?.createUser(withEmail: text1.text!, password: text2.text!) { (user, error) in
+            // ...
+            if let user = user{
+                print(user.email)
+                
+                print("User Cretaed")
+                print(user)
+                print(error?.localizedDescription)
+            }
+            else{
+                print("user not created")
+                print(user)
+                print(error?.localizedDescription)
+            }
+        }
+        
+        
+    }
+    
+    
+   }
 
-}
+
+
+
+
+
+
+
+
+
+
+
 
