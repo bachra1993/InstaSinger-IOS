@@ -10,6 +10,9 @@ import UIKit
 import AVKit
 import AVFoundation
 import AssetsLibrary
+import Firebase
+import FirebaseDatabase
+import FirebaseStorage
 
 class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelegate, UICollectionViewDelegate, UICollectionViewDataSource, AVPlayerViewControllerDelegate {
     
@@ -44,6 +47,8 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
     var videoThumbnail:[Thumbnail] = [Thumbnail]()
     var animating:Bool = false
     var time:Int = 0
+    var UserUid:String = ""
+    var user = UserInfo()
     
     var timer:Timer?
     
@@ -69,6 +74,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
                 }
                 
             }
+         
             
         }
         
@@ -519,12 +525,69 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
             
             DispatchQueue.main.async(execute: { () -> Void in
                 self.finalExportCompletion(exporter!)
+                
+                
+                //upload to firebase
+                let video = date
+                
+                 let uplaod = FIRStorage.storage().reference().child(video).putFile(url, metadata: nil)
+                
+                 { (metadata, error) in
+                    
+                    
+                    
+                    if (error != nil ) {
+                       
+
+                        
+                        print(error?.localizedDescription)
+                    }else
+                    {
+                        let video : [String : AnyObject] = ["URL" : metadata?.downloadURL()?.absoluteString as AnyObject]
+                        var ref: FIRDatabaseReference!
+                        self.UserUid = self.user.getCurrentUserUid()
+                        
+                        ref = FIRDatabase.database().reference()
+                        ref.child("users").child(self.UserUid).child("videos").childByAutoId().setValue(video)
+                       print( metadata?.downloadURLs)
+                        print(error?.localizedDescription)
+                    }
+                    
+                    
+                    
+                }
+                let observer = uplaod.observe(.progress) { snapshot in
+                    // A progress event occurred
+                    
+                    if let progress = snapshot.progress {
+                        let percentComplete = 100.0 * Double(progress.completedUnitCount) / Double(progress.totalUnitCount)
+                        print(percentComplete)
+                    }
+                }
+                
+
+                
+                print("video saved to galery")
             })
             
         })
         
         
     }
+    
+   
+    
+   
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     func finalExportCompletion(_ session: AVAssetExportSession) {
         let library = ALAssetsLibrary()
@@ -553,6 +616,19 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
         print("og")
     }
   
+    
+    @IBAction func dismissView(_ sender: Any) {
+        
+        print("dismiss view ")
+        self.dismiss(animated: true, completion: nil)
+        
+
+    }
+    
+    
+    
+    
+    
     
     
 

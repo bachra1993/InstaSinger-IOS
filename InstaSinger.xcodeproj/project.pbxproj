@@ -12,13 +12,17 @@
 		286292641DCF50860049D3A8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286292631DCF50860049D3A8 /* AppDelegate.swift */; };
 		286292661DCF50860049D3A8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286292651DCF50860049D3A8 /* ViewController.swift */; };
 		286292691DCF50860049D3A8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 286292671DCF50860049D3A8 /* Main.storyboard */; };
-		2862926C1DCF50860049D3A8 /* InstaSinger.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2862926A1DCF50860049D3A8 /* InstaSinger.xcdatamodeld */; };
 		2862926E1DCF50860049D3A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2862926D1DCF50860049D3A8 /* Assets.xcassets */; };
 		286292711DCF50860049D3A8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2862926F1DCF50860049D3A8 /* LaunchScreen.storyboard */; };
 		286292791DCF513D0049D3A8 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286292781DCF513D0049D3A8 /* CameraViewController.swift */; };
 		2862927B1DCF51EE0049D3A8 /* DraggableThumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2862927A1DCF51EE0049D3A8 /* DraggableThumbnail.swift */; };
 		2862927D1DCF6A220049D3A8 /* Thumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2862927C1DCF6A220049D3A8 /* Thumbnail.swift */; };
-		28F163701DD2329700DE9BEA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 28F1636F1DD2329700DE9BEA /* GoogleService-Info.plist */; };
+		286709031DD4E2800003CA42 /* InstaSinger.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 286709011DD4E2800003CA42 /* InstaSinger.xcdatamodeld */; };
+		286709051DD4E3410003CA42 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 286709041DD4E3410003CA42 /* GoogleService-Info.plist */; };
+		286837501DD2838A00EC724F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2868374F1DD2838A00EC724F /* ProfileViewController.swift */; };
+		28B298DA1DD35B75007A5DD0 /* Videos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B298D91DD35B75007A5DD0 /* Videos.swift */; };
+		28E110C61DD35D2100AA746E /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E110C51DD35D2100AA746E /* UserInfo.swift */; };
+		28E1110F1DD3E8B900AA746E /* CustomTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E1110E1DD3E8B900AA746E /* CustomTabBarViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,14 +32,19 @@
 		286292631DCF50860049D3A8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		286292651DCF50860049D3A8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		286292681DCF50860049D3A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		2862926B1DCF50860049D3A8 /* InstaSinger.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = InstaSinger.xcdatamodel; sourceTree = "<group>"; };
 		2862926D1DCF50860049D3A8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		286292701DCF50860049D3A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		286292721DCF50860049D3A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		286292781DCF513D0049D3A8 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		2862927A1DCF51EE0049D3A8 /* DraggableThumbnail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DraggableThumbnail.swift; sourceTree = "<group>"; };
 		2862927C1DCF6A220049D3A8 /* Thumbnail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Thumbnail.swift; sourceTree = "<group>"; };
-		28F1636F1DD2329700DE9BEA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		286709021DD4E2800003CA42 /* InstaSinger.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = InstaSinger.xcdatamodel; sourceTree = "<group>"; };
+		286709041DD4E3410003CA42 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2868374F1DD2838A00EC724F /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		28B298D91DD35B75007A5DD0 /* Videos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Videos.swift; sourceTree = "<group>"; };
+		28E110C51DD35D2100AA746E /* UserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
+		28E1110B1DD3CB8400AA746E /* InstaSinger.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = InstaSinger.entitlements; sourceTree = "<group>"; };
+		28E1110E1DD3E8B900AA746E /* CustomTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBarViewController.swift; sourceTree = "<group>"; };
 		9C42A8521F4320401922C4FE /* Pods-InstaSinger.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstaSinger.release.xcconfig"; path = "Pods/Target Support Files/Pods-InstaSinger/Pods-InstaSinger.release.xcconfig"; sourceTree = "<group>"; };
 		B05808F6D4ACFC61B1AD10FD /* Pods-InstaSinger.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstaSinger.debug.xcconfig"; path = "Pods/Target Support Files/Pods-InstaSinger/Pods-InstaSinger.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -73,20 +82,33 @@
 		286292621DCF50860049D3A8 /* InstaSinger */ = {
 			isa = PBXGroup;
 			children = (
+				28E1110B1DD3CB8400AA746E /* InstaSinger.entitlements */,
+				28B298D81DD35B68007A5DD0 /* Models */,
 				286292631DCF50860049D3A8 /* AppDelegate.swift */,
 				286292651DCF50860049D3A8 /* ViewController.swift */,
 				286292671DCF50860049D3A8 /* Main.storyboard */,
 				2862926D1DCF50860049D3A8 /* Assets.xcassets */,
 				2862926F1DCF50860049D3A8 /* LaunchScreen.storyboard */,
 				286292721DCF50860049D3A8 /* Info.plist */,
-				2862926A1DCF50860049D3A8 /* InstaSinger.xcdatamodeld */,
+				286709011DD4E2800003CA42 /* InstaSinger.xcdatamodeld */,
 				286292781DCF513D0049D3A8 /* CameraViewController.swift */,
 				2862927A1DCF51EE0049D3A8 /* DraggableThumbnail.swift */,
-				28F1636F1DD2329700DE9BEA /* GoogleService-Info.plist */,
+				286709041DD4E3410003CA42 /* GoogleService-Info.plist */,
 				2862927C1DCF6A220049D3A8 /* Thumbnail.swift */,
 				282487E91DCFCDE1001E3847 /* HomeViewController.swift */,
+				2868374F1DD2838A00EC724F /* ProfileViewController.swift */,
+				28E1110E1DD3E8B900AA746E /* CustomTabBarViewController.swift */,
 			);
 			path = InstaSinger;
+			sourceTree = "<group>";
+		};
+		28B298D81DD35B68007A5DD0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				28B298D91DD35B75007A5DD0 /* Videos.swift */,
+				28E110C51DD35D2100AA746E /* UserInfo.swift */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 		6053884FFA64BC6CBAAACF11 /* Frameworks */ = {
@@ -143,6 +165,11 @@
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = K67N7CU2TX;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -170,7 +197,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				286292711DCF50860049D3A8 /* LaunchScreen.storyboard in Resources */,
-				28F163701DD2329700DE9BEA /* GoogleService-Info.plist in Resources */,
+				286709051DD4E3410003CA42 /* GoogleService-Info.plist in Resources */,
 				2862926E1DCF50860049D3A8 /* Assets.xcassets in Resources */,
 				286292691DCF50860049D3A8 /* Main.storyboard in Resources */,
 			);
@@ -231,13 +258,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				286709031DD4E2800003CA42 /* InstaSinger.xcdatamodeld in Sources */,
 				286292661DCF50860049D3A8 /* ViewController.swift in Sources */,
 				2862927B1DCF51EE0049D3A8 /* DraggableThumbnail.swift in Sources */,
+				28E1110F1DD3E8B900AA746E /* CustomTabBarViewController.swift in Sources */,
+				286837501DD2838A00EC724F /* ProfileViewController.swift in Sources */,
 				282487EA1DCFCDE1001E3847 /* HomeViewController.swift in Sources */,
 				2862927D1DCF6A220049D3A8 /* Thumbnail.swift in Sources */,
 				286292791DCF513D0049D3A8 /* CameraViewController.swift in Sources */,
+				28B298DA1DD35B75007A5DD0 /* Videos.swift in Sources */,
 				286292641DCF50860049D3A8 /* AppDelegate.swift in Sources */,
-				2862926C1DCF50860049D3A8 /* InstaSinger.xcdatamodeld in Sources */,
+				28E110C61DD35D2100AA746E /* UserInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -359,6 +390,7 @@
 			baseConfigurationReference = B05808F6D4ACFC61B1AD10FD /* Pods-InstaSinger.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = InstaSinger/InstaSinger.entitlements;
 				DEVELOPMENT_TEAM = K67N7CU2TX;
 				INFOPLIST_FILE = InstaSinger/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -373,6 +405,7 @@
 			baseConfigurationReference = 9C42A8521F4320401922C4FE /* Pods-InstaSinger.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = InstaSinger/InstaSinger.entitlements;
 				DEVELOPMENT_TEAM = K67N7CU2TX;
 				INFOPLIST_FILE = InstaSinger/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -406,12 +439,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		2862926A1DCF50860049D3A8 /* InstaSinger.xcdatamodeld */ = {
+		286709011DD4E2800003CA42 /* InstaSinger.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				2862926B1DCF50860049D3A8 /* InstaSinger.xcdatamodel */,
+				286709021DD4E2800003CA42 /* InstaSinger.xcdatamodel */,
 			);
-			currentVersion = 2862926B1DCF50860049D3A8 /* InstaSinger.xcdatamodel */;
+			currentVersion = 286709021DD4E2800003CA42 /* InstaSinger.xcdatamodel */;
 			path = InstaSinger.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

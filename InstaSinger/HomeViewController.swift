@@ -8,19 +8,58 @@
 
 import UIKit
 import AVFoundation
+import Firebase
+import FirebaseDatabase
+import FirebaseStorage
 
 import AVKit
 
 class HomeViewController: UIViewController ,UITableViewDataSource , UITableViewDelegate {
+    
+    
+    
+    //Buttons
+    
+    
 
-    @IBOutlet weak var tableView: UITableView!
+
+   @IBOutlet weak var tableView: UITableView!
+    var videos = [Videos]()
+    var user = UserInfo()
+    var userUID : String!
+
+    
+    
+    var videoURL = NSURL()
+    
+    
+    var player = AVPlayer()
+    
+    
+    
+    var playerLayer = AVPlayerLayer()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+       
+     //   self.toolBar.setBackgroundImage(UIImage(), forToolbarPosition: UIBarPosition.any, barMetrics: UIBarMetrics.default)
+     // self.toolBar.shadowImage(forToolbarPosition: UIBarPosition.any)
+          fetchVideos()
+        self.tableView.isPagingEnabled = true
         
-        // Do any additional setup after loading the view.
     }
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+       
+      
+        
+    }
+    
+    
+        // Do any additional setup after loading the view.
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -33,7 +72,7 @@ class HomeViewController: UIViewController ,UITableViewDataSource , UITableViewD
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 3
+        return videos.count
         
     }
     
@@ -49,31 +88,56 @@ class HomeViewController: UIViewController ,UITableViewDataSource , UITableViewD
         
         let myCell:UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "myCell")!
         
+        let myvideo = videos[indexPath.row]
         
-        let VideoPreview:UIView = myCell.viewWithTag(200)!
+     
       
         
 
         
-        let videoURL = NSURL(string: "file:///Applications/XAMPP/xamppfiles/htdocs/api/uploads/20161104_204212.mp4")
         
-        let player = AVPlayer(url: videoURL! as URL)
-        
-        
-        let playerLayer = AVPlayerLayer(player: player)
-        playerLayer.frame = VideoPreview.frame
-        
-        
-        
-      //  playerLayer.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-     //   playerLayer.frame = myCell.contentView.bounds
-       // playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
-        
-        
-        myCell.layer.addSublayer(playerLayer)
-        
-       // player.play()
+        DispatchQueue.main.async(execute: {
+            let VideoPreview:UIView = myCell.viewWithTag(200)!
+            let btnLike:UIButton = myCell.viewWithTag(101) as! UIButton
+            let btnComment:UIButton = myCell.viewWithTag(102) as! UIButton
+            let btnMore:UIButton = myCell.viewWithTag(103) as! UIButton
 
+        
+        self.videoURL = NSURL(string: myvideo.URL)!
+        
+        
+       
+        
+       self.player = AVPlayer(url: self.videoURL as URL)
+        
+        
+        
+        self.playerLayer = AVPlayerLayer(player: self.player)
+        
+    //   VideoPreview.clipsToBounds = true
+      self.playerLayer.frame = VideoPreview.layer.bounds
+        
+        
+        
+  //  playerLayer.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+     //   playerLayer.frame = myCell.contentView.bounds
+        self.playerLayer.videoGravity = AVLayerVideoGravityResize
+        
+        
+   myCell.layer.addSublayer(self.playerLayer)
+           
+            myCell.addSubview(btnMore)
+             myCell.addSubview(btnLike)
+             myCell.addSubview(btnComment)
+            
+        
+      //  player.play()
+        
+        
+        })
+        
+       
+        
         
         
         
@@ -82,13 +146,13 @@ class HomeViewController: UIViewController ,UITableViewDataSource , UITableViewD
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        print("im taped")
+       // player.play()
+        
         
     }
     
-    
-    
-    
-    
+
     
  /*
     
@@ -120,5 +184,59 @@ class HomeViewController: UIViewController ,UITableViewDataSource , UITableViewD
     
     
     
-
+    
+    
+    
+    
+    func fetchVideos(){
+        print("hello bechi")
+        userUID = user.getCurrentUserUid()
+        var ref: FIRDatabaseReference!
+        print(userUID)
+        ref = FIRDatabase.database().reference()
+        
+        
+        
+        ref.child("users").child(userUID).child("videos").observe(.childAdded, with: {
+            
+            snapshot in
+            
+            if let dictionary = snapshot.value as? [String : AnyObject]{
+                let video = Videos()
+                video.setValuesForKeys(dictionary)
+                self.videos.append(video)
+                
+            
+                
+                
+                
+                
+                print(video.URL)
+                
+                DispatchQueue.main.async(execute: {
+                    self.tableView.reloadData()
+                })
+                
+                
+                
+            }
+            
+            
+            
+            
+            
+            
+        }){ (error) in
+            print(error.localizedDescription)
+            
+            
+            
+            
+        }
+    
+    
+    }
+    
+    
+    
 }

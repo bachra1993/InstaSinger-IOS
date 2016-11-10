@@ -9,6 +9,8 @@
 import UIKit
 import Alamofire
 import Firebase
+import FirebaseDatabase
+import FirebaseStorage
 
 class ViewController: UIViewController {
     
@@ -21,6 +23,11 @@ class ViewController: UIViewController {
        // test()
         
         super.viewDidLoad()
+        
+        
+        
+        
+        
         
         
         // Do any additional setup after loading the view, typically from a nib.
@@ -53,7 +60,15 @@ class ViewController: UIViewController {
         FIRAuth.auth()?.createUser(withEmail: text1.text!, password: text2.text!) { (user, error) in
             // ...
             if let user = user{
-                print(user.email)
+                
+                
+                let Myuser : [String : AnyObject] = ["email" : self.text1.text as AnyObject,"password" : self.text2.text as AnyObject]
+                
+                var ref: FIRDatabaseReference!
+                
+                ref = FIRDatabase.database().reference()
+                ref.child("users").child(user.uid).setValue(Myuser)
+           
                 
                 print("User Cretaed")
                 print(user)
@@ -80,27 +95,125 @@ class ViewController: UIViewController {
                 print(user.email)
                 
                 print("User Loged")
-                print(user)
+                print(user.uid)
                 print(error?.localizedDescription)
             }
             else{
                 print("user not Loged")
-                print(user)
+                print(user?.uid)
                 print(error?.localizedDescription)
             }
         }
 
         }
+
+
+
+
+
+
+
+   
+    @IBOutlet weak var myImage: UIImageView!
+    
+    
+    @IBAction func SaveTest(_ sender: Any) {
         
+        let titre = "Hello"
+        let message = "4eme"
+          let post : [String : AnyObject] = ["titre" : titre as AnyObject,"message" : message as AnyObject]
+        
+         var ref: FIRDatabaseReference!
+        
+        ref = FIRDatabase.database().reference()
+        ref.child("Post").child("ok").childByAutoId().setValue(post)
+        
+        
+       
+        
+        /*
+        let filename = "test.png"
+        
+        var image = UIImage()
+        image = myImage.image!
+        let imageData = UIImagePNGRepresentation(image)
+        let uplaod = FIRStorage.storage().reference().child(filename).put(imageData!, metadata: nil)
+        { (metadata, error) in
+            
+            if (error != nil ) {
+                  print(error?.localizedDescription)
+            }else
+            {
+                  print(error?.localizedDescription)
+            }
+            
+            
+            
+        }
+      
+        
+        
+        let observer = uplaod.observe(.progress) { snapshot in
+            // A progress event occurred
+        
+            if let progress = snapshot.progress {
+                let percentComplete = 100.0 * Double(progress.completedUnitCount) / Double(progress.totalUnitCount)
+                print(percentComplete)
+            }
+        }*/
+        
+        
+    }
+    
   
     
     
+    override func viewDidAppear(_ animated: Bool) {
+        
+        
+        print("retrive")
+        
+        
+        
+        var ref: FIRDatabaseReference!
+        
+        ref = FIRDatabase.database().reference()
+        
+  
+        
+        ref.child("Post").queryOrderedByKey().observe(.childAdded, with: {
+            
+            snapshot in
+            
+            
+            
+        let  test = snapshot.childSnapshot(forPath: "message").value as! String
+            
+                 print(test)
+            
+            
+            
+            
+            
+        }){ (error) in
+            print(error.localizedDescription)
+        
+  
+        
+
+    }
     
     
     
-    
-    
-   }
+}
+
+}
+
+
+
+
+        
+  
 
 
 
