@@ -9,9 +9,11 @@
 import UIKit
 import CoreData
 import Firebase
+import FBSDKCoreKit
+import GoogleSignIn
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate,GIDSignInDelegate {
 
     var window: UIWindow?
 
@@ -19,12 +21,63 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
        FIRApp.configure()
+        //google
+        GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
+        GIDSignIn.sharedInstance().delegate = self
+        
+        //facebook
+        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        
+        
+        
+        
+        
+        //Connecxion
+        
+        if Reachability.isConnectedToNetwork() == true
+        {
+            print("Internet Connection Available!")
+        }
+        else
+        {
+            print("Internet Connection not Available!")
+            var alert = UIAlertView(title: "No Internet Connection", message: "Make sure your device is connected to the internet.", delegate: nil, cancelButtonTitle: "OK")
+            alert.show()
+        }
+        
+        
+        
+        
+        
         return true
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
+    }
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        let authentication = user.authentication
+        let credential = FIRGoogleAuthProvider.credential(withIDToken: (authentication?.idToken)!,
+                                                          accessToken: (authentication?.accessToken)!)
+        let comp:FIRAuthResultCallback = { (user:FIRUser?, error:NSError?) in
+            if error == nil {
+            }
+            } as! FIRAuthResultCallback
+        FIRAuth.auth()?.signIn(with: credential, completion: comp)
+    }
+    
+    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: NSError!) {
+        
+    }
+    //faceboook
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        let handled = FBSDKApplicationDelegate.sharedInstance().application(app, open: url, sourceApplication: options [UIApplicationOpenURLOptionsKey.sourceApplication] as! String, annotation: options[UIApplicationOpenURLOptionsKey.annotation])
+        GIDSignIn.sharedInstance().handle(url,
+                                          sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String,
+                                          annotation: options[UIApplicationOpenURLOptionsKey.annotation])
+        
+        return handled
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
@@ -91,5 +144,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 
+}
+
+
+
+extension AppDelegate {
+    
+    fileprivate func configureNavigationTabBar() {
+        //transparent background
+        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
+        UINavigationBar.appearance().shadowImage     = UIImage()
+        UINavigationBar.appearance().isTranslucent     = true
+        
+        let shadow = NSShadow()
+        shadow.shadowOffset = CGSize(width: 0, height: 2)
+        shadow.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.1)
+        
+        UINavigationBar.appearance().titleTextAttributes = [
+            NSForegroundColorAttributeName : UIColor.white,
+            NSShadowAttributeName: shadow
+        ]
+    }
 }
 

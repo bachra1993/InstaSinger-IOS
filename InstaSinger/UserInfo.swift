@@ -11,7 +11,13 @@ import Firebase
 import FirebaseDatabase
 import FirebaseStorage
 
-class UserInfo {
+class UserInfo : NSObject {
+    
+    let email : String! = ""
+    let fullname : String! = ""
+    let profilePictureURL : String! = ""
+    let username : String! = ""
+    
     
     
     func getCurrentUserUid() -> String{

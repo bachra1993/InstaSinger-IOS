@@ -9,10 +9,14 @@
 import UIKit
 
 class CustomTabBarViewController: UITabBarController {
+    var user = UserInfo()
+    var userUid : String!
 
    // @IBOutlet weak var tabBar: UITabBar!
     override func viewDidLoad() {
         super.viewDidLoad()
+             
+        
         
         
         

@@ -10,6 +10,11 @@ import UIKit
 
 class Videos: NSObject {
     var URL : String!
+    var comments : String!
+    var likes : String!
+    var singer : String!
+    var song : String!
+    var songPicture : String!
     
 
 

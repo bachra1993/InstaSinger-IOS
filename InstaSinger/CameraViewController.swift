@@ -13,6 +13,11 @@ import AssetsLibrary
 import Firebase
 import FirebaseDatabase
 import FirebaseStorage
+import EZLoadingActivity
+import Alamofire
+import SwiftSpinner
+
+
 
 class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelegate, UICollectionViewDelegate, UICollectionViewDataSource, AVPlayerViewControllerDelegate {
     
@@ -27,6 +32,26 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
     @IBOutlet var timeLabel:UILabel!
     @IBOutlet var trashButton:UIButton!
     @IBOutlet var clipsCollectionView:UICollectionView!
+    
+    
+    
+    @IBOutlet weak var activity_animation: UIActivityIndicatorView!
+    
+    @IBOutlet weak var progress_bar: UIProgressView!
+    
+    
+    
+    var previewURL = String()
+    var SongURL = String ()
+    var SingerURL = String ()
+    var PictureURL = String ()
+    var ServerURL :String = "http://a3tihooli.com/instasinger/upload.php"
+    var ServerUploadFile:String = "http://a3tihooli.com/instasinger/uploads/"
+   
+    
+    
+    
+    
     
     var videoPlayer:AVPlayerViewController?
     var avPlayerLayer:AVPlayerLayer?
@@ -55,6 +80,27 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
     override func viewDidLoad() {
         print("app did started ::: ç")
         super.viewDidLoad()
+        
+        progress_bar.isHidden = true
+        
+        
+        
+        
+        
+        
+        //   downloadFileFromURL(url: URL(string: previewURL)!)
+        
+        
+        
+        
+        
+        
+        Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.checkTimer
+            ), userInfo: nil, repeats: true)
+        
+        
+        
+        
         captureSession = AVCaptureSession()
         clipsCollectionView.canCancelContentTouches = false
         clipsCollectionView.isExclusiveTouch = false
@@ -74,7 +120,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
                 }
                 
             }
-         
+            
             
         }
         
@@ -110,6 +156,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
         }
         
         output = AVCaptureMovieFileOutput()
+        output.maxRecordedDuration = CMTimeMake(10, 1)
         
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(CameraViewController.handleLongGesture(_:)))
         longPressGesture.minimumPressDuration = 0.1
@@ -134,7 +181,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
     func viewStyling(){
         
         self.trashButton.isHidden = true
-      // let image = UIImage(named: //"record")?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+        // let image = UIImage(named: //"record")?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
         //recordBtn.setImage(image, for: UIControlState())
         //recordBtn.imageView?.contentMode = UIViewContentMode.scaleAspectFit
         
@@ -162,8 +209,12 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
         
         if frontCamera{
             try! captureSession?.addInput(AVCaptureDeviceInput(device: backCameraVideoCapture!))
+            flashLightBtn?.isEnabled = true
+
         }else{
             try! captureSession?.addInput(AVCaptureDeviceInput(device: frontCameraVideoCapture!))
+            flashLightBtn?.isEnabled = false
+
         }
         
         frontCamera = !frontCamera
@@ -201,31 +252,122 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
     
     @IBAction func recordVideo(){
         
-        if recordingInProgress {
-            self.stopTimer()
-            output.stopRecording()
-            
-            recordBtn.tintColor = UIColor.black
-            
-        }else{
-            
-            recordBtn.tintColor = UIColor.red
-            let formatter = DateFormatter()
-            formatter.dateFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'"
-            let date = Date()
-            let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString
-            let outputPath = "\(documentsPath)/\(formatter.string(from: date)).mp4"
-            let outputURL = URL(fileURLWithPath: outputPath)
-            output.startRecording(toOutputFileURL: outputURL, recordingDelegate: self)
-            self.startTimer()
-        }
+        let myString = "\(time)"
+        let myInt = (myString as NSString).integerValue
         
-        recordingInProgress = !recordingInProgress
+        
+        if (recordingInProgress == false && myInt == 5) {
+            let alert = UIAlertController(title: "Warning", message: "Can't Record anymore", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            
+        }
+        else {
+            
+            
+            
+            if recordingInProgress {
+                
+                
+                StopRecord()
+                
+                
+                
+                recordBtn.tintColor = UIColor.black
+                
+            }else{
+                
+                StartRecording()
+                
+                
+                
+            }
+            
+        }
+        print("print timer " )
+        print ("\(time)")
         
     }
     
+    
+    func StopRecord () {
+        player.pause()
+        self.stopTimer()
+        output.stopRecording()
+        recordingInProgress = !recordingInProgress
+        
+        
+    }
+    
+    
+    func StartRecording() {
+        
+        
+        let myString = "\(time)"
+        
+        
+        
+        
+        
+        
+        recordBtn.tintColor = UIColor.red
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'"
+        let date = Date()
+        let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString
+        let outputPath = "\(documentsPath)/\(formatter.string(from: date)).mp4"
+        let outputURL = URL(fileURLWithPath: outputPath)
+        player.play()
+        output.startRecording(toOutputFileURL: outputURL, recordingDelegate: self)
+        self.startTimer()
+        recordingInProgress = !recordingInProgress
+        
+        
+    }
+    
+    
+    
+    
+    
+    func checkTimer () {
+        
+        
+        let myString = "\(time)"
+        let myInt = (myString as NSString).integerValue
+        
+        
+        if ( recordingInProgress && myInt == 5  ) {
+            print("before 5")
+            StopRecord()
+        }
+        
+        
+        
+        
+    }
+    
+    
+    
+    
+    
     @IBAction func doneBtnClicked(){
-        self.mergeVideoClips()
+        let myString = "\(time)"
+        let myInt = (myString as NSString).integerValue
+        
+        if (myInt < 3)
+        {
+            
+            let alert = UIAlertController(title: "Warning", message: "Video must be at least 3 seconds long", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+        else {
+            self.mergeVideoClips()
+            
+        }
+        
+        
+        
     }
     
     // MARK: AVCaptureFileOutputRecordingDelegate methods
@@ -288,7 +430,6 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
     }
     
     func handleExportCompletion(_ session: AVAssetExportSession) {
-        let library = ALAssetsLibrary()
         let thumbnail =  self.getThumbnail(session.outputURL!)
         videoClips.append(session.outputURL!)
         
@@ -382,7 +523,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
         
         let playerItem = AVPlayer(url: url)
         NotificationCenter.default.addObserver(self, selector: #selector(CameraViewController.itemDidFinsihPlaying(_:)), name:NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: playerItem)
-     //   let player = AVPlayer(URL: session.outputURL!)
+        //   let player = AVPlayer(URL: session.outputURL!)
         let playerController = AVPlayerViewController()
         playerController.player = playerItem
         self.present(playerController, animated: true) {
@@ -390,7 +531,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
         }
         
         
-       
+        
         
         
     }
@@ -415,6 +556,7 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
                 
             }else {
                 break
+                
             }
         case UIGestureRecognizerState.changed:
             let touchPoint = gesture.location(in: self.view)
@@ -424,9 +566,13 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
             }else if (hitView == self.videoPreviewView){
                 self.trashButton.isHidden = false
                 self.trashButton.tintColor = UIColor.black
+                print("trash3")
+                
             }else{
                 self.trashButton.isHidden = true
                 self.trashButton.tintColor = UIColor.black
+                print("trash4")
+                
             }
             
             clipsCollectionView.updateInteractiveMovementTargetPosition(gesture.location(in: gesture.view!))
@@ -434,17 +580,21 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
             let touchPoint = gesture.location(in: self.view)
             let hitView = self.view.hitTest(touchPoint, with: nil)
             if (hitView == self.trashButton){
+                print("trash5")
+                
                 let cell = clipsCollectionView.cellForItem(at: self.selectedIndexPath!)
-                cell?.removeFromSuperview()
                 let avAsset = AVURLAsset(url: self.videoClips[self.selectedIndexPath!.row])
                 let duration = CMTimeGetSeconds(avAsset.duration)
                 self.time -= Int(duration)
                 self.updateTimeLabel()
                 self.thumbnails.remove(at: self.selectedIndexPath!.row)
                 self.videoClips.remove(at: self.selectedIndexPath!.row)
+                cell?.removeFromSuperview()
+                
                 self.clipsCollectionView.reloadData()
                 
             }
+            //    self.clipsCollectionView.reloadData()
             
             self.trashButton.isHidden = true
             self.trashButton.tintColor = UIColor.black
@@ -521,63 +671,194 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
         exporter?.outputFileType = AVFileTypeMPEG4
         
         
+        
+        
         exporter?.exportAsynchronously(completionHandler: { () -> Void in
             
             DispatchQueue.main.async(execute: { () -> Void in
                 self.finalExportCompletion(exporter!)
                 
+                /*
+                 upload to firebase
+                 EZLoadingActivity.show("Loading...", disableUI: true)
+                 
+                 let video = date
+                 
+                 let uplaod = FIRStorage.storage().reference().child(video).putFile(url, metadata: nil)
+                 
+                 { (metadata, error) in
+                 
+                 
+                 
+                 if (error != nil ) {
+                 
+                 
+                 
+                 }else
+                 {
+                 var ref: FIRDatabaseReference!
+                 ref = FIRDatabase.database().reference()
+                 let key = ref.child("videos").childByAutoId().key
+                 
+                 let video : [String : AnyObject] = ["URL" : metadata?.downloadURL()?.absoluteString as AnyObject , "likes" : "0" as AnyObject  ,
+                 "comments" : key as AnyObject ,
+                 "singer" : self.SingerURL as AnyObject ,
+                 "song" : self.SongURL as AnyObject,
+                 "songPicture" : self.PictureURL as AnyObject ,
+                 
+                 
+                 ]
+                 
+                 self.UserUid = self.user.getCurrentUserUid()
+                 
+                 
+                 
+                 ref.child("videos").child(self.UserUid).child(key).setValue(video)
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 }
+                 
+                 
+                 
+                 }
+                 
+                 _ = uplaod.observe(.progress) { snapshot in
+                 // A progress event occurred
+                 
+                 if let progress = snapshot.progress {
+                 let percentComplete = Double(progress.completedUnitCount) / Double(progress.totalUnitCount)
+                 self.progress_bar.setProgress(Float(percentComplete), animated: true)
+                 print(percentComplete)
+                 
+                 
+                 
+                 
+                 
+                 }
+                 
+                 }
+                 
+                 
+                 
+                 _ = uplaod.observe(.success) { snapshot in
+                 
+                 EZLoadingActivity.hide(true, animated: true)
+                 
+                 let alert = UIAlertController(title: "Done", message: "Video Uploded", preferredStyle: UIAlertControllerStyle.alert)
+                 alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
+                 self.present(alert, animated: true, completion: nil)
+                 
+                 
+                 
+                 
+                 
+                 }*/
                 
-                //upload to firebase
+                
+                
+                var ref: FIRDatabaseReference!
+                ref = FIRDatabase.database().reference()
+                let key = ref.child("videos").childByAutoId().key
+                
+                print("korass")
+                print(url)
                 let video = date
                 
-                 let uplaod = FIRStorage.storage().reference().child(video).putFile(url, metadata: nil)
+                var fileName :String = key
+                fileName += ".mp4"
                 
-                 { (metadata, error) in
-                    
-                    
-                    
-                    if (error != nil ) {
-                       
-
-                        
-                        print(error?.localizedDescription)
-                    }else
-                    {
-                        let video : [String : AnyObject] = ["URL" : metadata?.downloadURL()?.absoluteString as AnyObject]
-                        var ref: FIRDatabaseReference!
-                        self.UserUid = self.user.getCurrentUserUid()
-                        
-                        ref = FIRDatabase.database().reference()
-                        ref.child("users").child(self.UserUid).child("videos").childByAutoId().setValue(video)
-                       print( metadata?.downloadURLs)
-                        print(error?.localizedDescription)
-                    }
-                    
-                    
-                    
-                }
-                let observer = uplaod.observe(.progress) { snapshot in
-                    // A progress event occurred
-                    
-                    if let progress = snapshot.progress {
-                        let percentComplete = 100.0 * Double(progress.completedUnitCount) / Double(progress.totalUnitCount)
-                        print(percentComplete)
-                    }
-                }
                 
-
+                let FileNameWithURL = "\(self.ServerUploadFile)\(key).mp4"
+                
+                //    let filePath = documentsPath.stringByAppendingPathComponent(fileName)
+                let fileURL = NSURL(fileURLWithPath: savePath)
+                
+                
+                
+                
+              //  EZLoadingActivity.show("Uploading...", disableUI: true)
+            
+                
+                Alamofire.upload(
+                    multipartFormData: { multipartFormData in
+                        multipartFormData.append(url, withName: "uploaded_file", fileName: fileName, mimeType: "video/mp4")
+                        
+                },
+                    to:self.ServerURL,
+                    encodingCompletion: { encodingResult in
+                        switch encodingResult {
+                        case .success(let upload, _, _):
+                            upload.responseString { response in
+                                debugPrint(response)
+                                
+                                
+                                //Upload Video info to firebase
+                                
+                                
+                                
+                                
+                                
+                                let video : [String : AnyObject] = ["URL" : FileNameWithURL as AnyObject ,
+                                                                    "likes" : "0" as AnyObject  ,
+                                                                    "comments" : key as AnyObject ,
+                                                                    "singer" : self.SingerURL as AnyObject ,
+                                                                    "song" : self.SongURL as AnyObject,
+                                                                    "songPicture" : self.PictureURL as AnyObject ,
+                                                                    ]
+                                
+                                self.UserUid = self.user.getCurrentUserUid()
+                                
+                                
+                                
+                                ref.child("videos").child(self.UserUid).child(key).setValue(video)
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                               // EZLoadingActivity.hide(true, animated: true)
+                                SwiftSpinner.hide()
+                                let alert = UIAlertController(title: "Done", message: "Video Uploded", preferredStyle: UIAlertControllerStyle.alert)
+                                alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
+                                self.present(alert, animated: true, completion: nil)
+                                
+                            }
+                            upload.uploadProgress{
+                                progress in // main queue by default
+                                print("Upload Progress: \(progress.fractionCompleted)")
+                                
+                                    SwiftSpinner.show(progress: progress.fractionCompleted, title: "Uploading video")
+                                self.progress_bar.setProgress(Float(progress.fractionCompleted), animated: true)
+                                
+                                
+                            }
+                            
+                        case .failure(let encodingError):
+                            print(encodingError)
+                        }
+                }
+                )
+                
                 
                 print("video saved to galery")
+                
             })
             
         })
         
         
+        
     }
     
-   
     
-   
     
     
     
@@ -615,14 +896,63 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
     @IBAction func PreviewVideo(_ sender: Any, session: AVAssetExportSession) {
         print("og")
     }
-  
+    
     
     @IBAction func dismissView(_ sender: Any) {
         
         print("dismiss view ")
         self.dismiss(animated: true, completion: nil)
         
-
+        
+    }
+    
+    
+    
+    //audio test
+    
+    /*
+     
+     func downloadFileFromURL(url : URL ){
+     var downloadTask = URLSessionDownloadTask()
+     activity_animation.startAnimating()
+     activity_animation.hidesWhenStopped = true
+     
+     self.recordBtn.isUserInteractionEnabled = false
+     downloadTask = URLSession.shared.downloadTask(with: url, completionHandler: {
+     
+     customURL , response , error in
+     DispatchQueue.main.async {
+     self.play(url: customURL!)
+     //  self.slider.maximumValue = Float(player.duration)
+     }
+     })
+     downloadTask.resume()
+     
+     
+     }
+     
+     
+     func play(url : URL){
+     do{
+     player = try AVAudioPlayer(contentsOf: url)
+     player.prepareToPlay()
+     self.recordBtn.isUserInteractionEnabled = true
+     
+     
+     activity_animation.stopAnimating()
+     
+     
+     }
+     catch {
+     print(error)
+     
+     }
+     }
+     
+     
+     */
+    @IBAction func Prview(_ sender: Any) {
+        player.play()
     }
     
     
@@ -630,8 +960,6 @@ class CameraViewController: UIViewController, AVCaptureFileOutputRecordingDelega
     
     
     
-    
-
     
 }
 
